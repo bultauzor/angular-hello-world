@@ -1,8 +1,8 @@
 name: Linter pipeline
 on:
   push:
-    branches:
-      - "!main"
+    branches-ignore:
+      - "main"
 jobs:
   Lint:
     runs-on: ubuntu-latest
