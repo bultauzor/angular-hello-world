@@ -1,0 +1,19 @@
+name: Linter pipeline
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install angular cli
+        run: npm install -g @angular/cli
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - run: cd ${{ github.workspace }}
+      - name: Run `npm install`
+        run: npm install
+      - name: Run linter
+        run: ng lint
+      - run: echo "Everything is good :)"
