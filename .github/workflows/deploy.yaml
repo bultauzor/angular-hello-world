@@ -1,0 +1,33 @@
+name: Deploy pipeline
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  Deploy:
+    # Look https://github.com/actions/deploy-pages?tab=readme-ov-file#security-considerations
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install angular cli
+        run: npm install -g @angular/cli
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - run: cd ${{ github.workspace }}
+      - name: Run `npm install`
+        run: npm install
+      - name: Build the website
+        run: ng build
+      - name: Upload the website to Github pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/angular-hello-world/browser
+      - name: Deploy the white elephant
+        uses: actions/deploy-pages@v4
