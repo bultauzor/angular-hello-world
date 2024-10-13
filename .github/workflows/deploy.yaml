@@ -24,7 +24,7 @@ jobs:
       - name: Run `npm install`
         run: npm install
       - name: Build the website
-        run: ng build
+        run: ng build --base-href '/angular-hello-world/'
       - name: Upload the website to Github pages
         uses: actions/upload-pages-artifact@v3
         with:
