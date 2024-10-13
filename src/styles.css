@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  animation-name: spin;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes spin {
+  0%   {rotate: 0deg;}
+  100% {rotate: 360deg;}
+}
